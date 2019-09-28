@@ -1,6 +1,8 @@
-class DFA:
+class State:
     def __init__ (self, energy = 0, hygiene = 0, fun = 0):
-    
+        self.energy = energy
+        self.fun = fun
+        self.hygiene = hygiene
     def Tidur(self, a):
         if a == "Siang":
             self.energy +=10
@@ -27,14 +29,14 @@ class DFA:
     def Buang (self, a):
         if a == "Kecil":
             self.hygiene+=5
-        elif a == "Besar"
+        elif a == "Besar":
             self.Besar +=10
             self.energy+=-5
     def Bersosialisasi(self):
         self.fun += 15
         self.energy-=10
         self.hygiene-=5
-    def Bermain(self, a);
+    def Bermain(self, a):
         if a == "Media":
             self.fun +=10
             self.energy-=10
@@ -46,7 +48,7 @@ class DFA:
         self.energy -=5
     def Cuci (self):
         self.hygiene+=5
-    def Mendengarkan (self)
+    def Mendengarkan (self):
         self.fun += 10
         self.energy -= 5
     def Membaca(self,a):
@@ -56,7 +58,11 @@ class DFA:
         elif a == "Novel":
             self.fun += 10
             self.energy -=5
-  
-txt = str(raw_input())
-x = txt.split(,3)
-print(x)
+
+finish = False
+Q = State()
+
+while (not finish):  
+    txt = str(raw_input())
+    x = txt.split()
+    print(x)
