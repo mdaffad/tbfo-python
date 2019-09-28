@@ -1,7 +1,6 @@
 import pandas as pd
 import csv
-import xlsxwriter
-df = pd.read_excel("C:\python\coba.xlsx") 
+df = pd.read_csv('dataset.csv') 
 a=[[0,0,0] for j in range (64)]
 energy=df.loc[0:,"energy"]
 hygiene=df.loc[0:,"hygiene"]
