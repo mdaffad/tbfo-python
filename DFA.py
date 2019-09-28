@@ -96,3 +96,5 @@ while (not finish):
     else:
         print("Masukan tidak valid\n")
         Q = temp
+    if Q.hygiene == 15 and Q.energy == 15 and Q.fun == 15:
+        finish = True
