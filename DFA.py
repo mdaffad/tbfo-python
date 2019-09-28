@@ -1,7 +1,7 @@
 class State:
     # Konstruktor 
-    def __init__ (self, energy = 0, hygiene = 0, fun = 0):
-        # default : Semua nilai = 0 
+    def __init__ (self, energy = 10, hygiene = 0, fun = 0):
+        # default : Semua nilai = 0 kecuali hygiene sudah 10
         self.energy = energy
         self.fun = fun
         self.hygiene = hygiene
@@ -67,7 +67,7 @@ finish = False
 Q = State()
 
 while (not finish):  
-    txt = str(raw_input())
+    txt = str(input())
     x = txt.split()
 
     temp = State(Q.energy, Q.hygiene, Q.fun)
@@ -96,5 +96,5 @@ while (not finish):
     else:
         print("Masukan tidak valid\n")
         Q = temp
-    if Q.hygiene == 15 and Q.energy == 15 and Q.fun == 15:
+    if (Q.hygiene == 15 and Q.energy == 15 and Q.fun == 15) or (Q.hygiene == 0 and Q.energy == 0 and Q.fun == 0):
         finish = True
