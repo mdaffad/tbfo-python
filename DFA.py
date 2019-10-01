@@ -34,7 +34,7 @@ class State:
         if a == "Kecil":
             self.hygiene+=5
         elif a == "Besar":
-            self.Besar +=10
+            self.hygiene +=10
             self.energy+=-5
     def Bersosialisasi(self):
         self.fun += 15
@@ -63,38 +63,72 @@ class State:
             self.fun += 10
             self.energy -=5
 
+# Konstruksi objek state
+Q = State(10)
+# inisialisasi kondisi awal
 finish = False
-Q = State()
+Aksi = True
 
+# DFA
 while (not finish):  
+    # Mengembalikan Nilai awal Aksi
+    Aksi = True
+
+    print("\n")
+
+    # Input raw string untuk menyimpan semua teks dalam satu baris
     txt = str(raw_input())
+
+    # splitting raw string agar mempermudah proses
     x = txt.split()
 
+    # menyimpan state sementara (temp) agar mengembalikan
+    # state jika state merupakan aksi tidak valid
+
     temp = State(Q.energy, Q.hygiene, Q.fun)
-    if x[0] == "Tidur":
+    
+    # Proses seleksi Aksi (transisi DFA)
+    if txt == "Tidur Siang" or txt == "Tidur Malam":
         Q.Tidur(x[1])
-    elif x[0] == "Makan":
+    elif txt == "Makan Hamburger" or txt == "Makan Pizza" or txt == "Makan Steak and Beans":
         Q.Makan(x[1])
-    elif x[0] == "Minum":
+    elif txt == "Minum Air" or txt == "Minum Jus" or txt == "Minum Kopi":
         Q.Minum(x[1])
-    elif x[0] == "Buang":
+    elif txt == "Buang Air Kecil" or txt == "Buang Air Besar":
         Q.Buang(x[2])
-    elif x[0] == "Bersosialisasi":
+    elif txt == "Bersosialisasi ke Kafe":
         Q.Bersosialisasi()
-    elif x[0] == "Bermain":
+    elif txt == "Bermain Media Sosial" or txt == "Bermain Komputer":
         Q.Bermain(x[1])
-    elif x[0] == "Mandi":
+    elif txt == "Mandi":
         Q.Mandi()
-    elif x[0] == "Cuci":
+    elif txt == "Cuci Tangan":
         Q.Cuci()
-    elif x[0] == "Mendengarkan":
+    elif txt == "Mendengarkan Musik di Radio":
         Q.Mendengarkan()
-    elif x[0] == "Membaca":
+    elif txt == "Membaca Koran" or txt == "Membaca Novel":
         Q.Membaca(x[[1]])
-    if 0 <= Q.hygiene <= 15 and 0 <= Q.energy <= 15 and 0 <= Q.fun <= 15:
-        print("Hygiene = " + str(Q.hygiene) + "\n" + "Energy = " + str(Q.energy) + "\n" + "Fun = " + str(Q.fun))
+    
+    # Apabila tidak terdapat transisi yang sesuai dengan nama
     else:
-        print("Masukan tidak valid\n")
+        print("\nAksi tidak valid\n")
+        Aksi = False
+    
+    # Apabila terdapat nama transisi valid dan semua nilai state valid
+    if 0 <= Q.hygiene <= 15 and 0 <= Q.energy <= 15 and 0 <= Q.fun <= 15 and Aksi:
+        print("\nHygiene = " + str(Q.hygiene) + "\n" + "Energy = " + str(Q.energy) + "\n" + "Fun = " + str(Q.fun))
+    
+    # Apablia terdapat nama transisi valid dan ada nilai state yang tidak valid
+    elif Aksi:
+        print("\nAksi tidak valid\n")
+        # reset ke state sementara
         Q = temp
-    if Q.hygiene == 15 and Q.energy == 15 and Q.fun == 15:
+    
+    # Syarat permainan selesai
+    if (Q.hygiene == 15 and Q.energy == 15 and Q.fun == 15):
         finish = True
+        print("\nProgam Selesai\nSemua atribut bernilai maksimum")
+    
+    if (Q.hygiene == 0 and Q.energy == 0 and Q.fun == 0):
+        finish = True
+        print("\nProgam Selesai\nSemua atribut bernilai minimum")
