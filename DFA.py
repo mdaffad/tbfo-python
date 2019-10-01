@@ -1,7 +1,7 @@
 class State:
     # Konstruktor 
-    def __init__ (self, energy = 0, hygiene = 0, fun = 0):
-        # default : Semua nilai = 0 
+    def __init__ (self, energy = 10, hygiene = 0, fun = 0):
+        # default : Semua nilai = 0 kecuali hygiene sudah 10
         self.energy = energy
         self.fun = fun
         self.hygiene = hygiene
