@@ -107,7 +107,7 @@ while (not finish):
     elif txt == "Mendengarkan Musik di Radio":
         Q.Mendengarkan()
     elif txt == "Membaca Koran" or txt == "Membaca Novel":
-        Q.Membaca(x[[1]])
+        Q.Membaca(x[1])
     
     # Apabila tidak terdapat transisi yang sesuai dengan nama
     else:
